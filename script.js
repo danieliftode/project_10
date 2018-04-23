@@ -6,9 +6,12 @@ var numeDoi = document.querySelectorAll('.second');
 var mail = document.querySelectorAll('.email');
 var oras = document.querySelectorAll('.city');
 var pic = document.querySelectorAll('.poza');
-var modAl = document.querySelector('.modal');
-var modAl_cont = document.querySelectorAll('.modal-content');
+var modal = document.querySelector('.modal');
+var modal_cont = document.querySelector('.modal-content');
 //console.log(modAl_cont);
+function test(member){
+
+}
 var alpha = document.querySelector('body');
 $(document).ready(function(){
 
@@ -23,17 +26,16 @@ $(document).ready(function(){
     }
 
     //making an object
-      for(var i = 0; i < url.results.length; i++){
-        var user = {
-          aniversare : url.results[i].dob,
-          addressa : url.results[i].location,
-          telefonul : url.results[i].cell,
-          email : url.results[i].email,
-          user : url.results[i].login.username
-        }
-      }
+      // for(var i = 0; i < url.results.length; i++){
+      //   var user = {
+      //     aniversare : url.results[i].dob,
+      //     addressa : url.results[i].location,
+      //     telefonul : url.results[i].cell,
+      //     email : url.results[i].email,
+      //     user : url.results[i].login.username
+      //   }
+      // }
 
-      ///NEED TO STUDY AND APPPL FOR EACH METHOD TO ADD CONTENT TO THE MODAL
 
       //need to add the data to each modal !!!
     for (var i = 0; i < url.results.length; i++){
@@ -53,16 +55,18 @@ $(document).ready(function(){
     }
     // schimb abordarea pun la fiecare user un modal individual in html structure
     //si in el pun informatiile
-    alpha.addEventListener('click', function(e){
+    tag_one.addEventListener('click', function(e){
       if(e.target.classList[0] === 'user'){
-        modAl.style.display = 'block';
-        modAl_cont += '<p>what the fuck</p>'
+        modal.style.display = 'block';
+        modal_cont.innerHTML += '<h1>what the fuck</h1>';
       }
       if(e.target.classList[0] === 'close'){
-        modAl.style.display = 'none';
+        modal.style.display = 'none';
       }
     });
   }
+
+  //for tag
   $.getJSON(url, getInFo);
 // alpha.addEventListener('click', function(e){
 //   if(e.target.classList[0]  === 'user') {
@@ -73,6 +77,5 @@ $(document).ready(function(){
 //   }
 // })
 
-//need to post on git need to ask for help
 
 })//end ready
