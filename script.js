@@ -12,14 +12,16 @@ var modal_cont = document.querySelector('.modal-content');
 function test(member){
 
 }
+let employees;
 var alpha = document.querySelector('body');
 $(document).ready(function(){
 
   function getInFo(url){
-    for(var i = 0; i < url.results.length; i++){
+    employees = url.results;
+    for(var i = 0; i < employees.length; i++){
       for(var i = 0; i < nume.length; i++){
-        var capi_first = url.results[i].name.first;
-        var capi_last = url.results[i].name.last;
+        var capi_first = employees[i].name.first;
+        var capi_last = employees[i].name.last;
         nume[i].innerText = capi_first.slice(0, 1).toUpperCase() + capi_first.slice(1, 20) + ' '
         + capi_last.slice(0, 1).toUpperCase() + capi_last.slice(1, 10);
       }
@@ -38,19 +40,19 @@ $(document).ready(function(){
 
 
       //need to add the data to each modal !!!
-    for (var i = 0; i < url.results.length; i++){
+    for (var i = 0; i < employees.length; i++){
       for(var i = 0; i < mail.length; i++){
-        mail[i].innerText = url.results[i].email;
+        mail[i].innerText = employees[i].email;
       }
     }
-    for (var i = 0; i < url.results.length; i++){
+    for (var i = 0; i < employees.length; i++){
       for(var i = 0; i < oras.length; i++){
-        oras[i].innerText = url.results[i].location.city;
+        oras[i].innerText = employees[i].location.city;
       }
     }
-    for (var i = 0; i < url.results.length; i++){
+    for (var i = 0; i < employees.length; i++){
       for(var i = 0; i < pic.length; i++){
-        pic[i].setAttribute('src', url.results[i].picture.large)
+        pic[i].setAttribute('src', employees[i].picture.large)
       }
     }
     // schimb abordarea pun la fiecare user un modal individual in html structure
