@@ -45,6 +45,7 @@ h3, p{
 /*modal*/
 .modal {
     display: none;
+    /*display: block;*/
     position: fixed;
     z-index: 1;
     left: 0;
@@ -56,11 +57,18 @@ h3, p{
     background-color: rgba(0,0,0,0.4);
 }
 .modal-content {
+    border-radius: 20px;
     background-color: #fefefe;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
+}
+.modal-content img {
+  border-radius: 20px;
+}
+.modal-content h1, h2, h3, h4, h5, h6{
+  text-align: center;
 }
 .close {
     color: #aaa;

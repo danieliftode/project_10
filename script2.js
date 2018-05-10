@@ -2,6 +2,8 @@
 let api_link = 'https://randomuser.me/api/?results=12';
 let employees;
 const alpha = document.querySelector('body');
+//let fin = document.querySelector('.modal');
+let test = document.querySelector('body');
 let user_html = '';
 let key = 0;
 /*how ajax works:
@@ -22,10 +24,12 @@ let key = 0;
 //the rest of the information about that user in a modal
 $(document).ready(function(){
 
+
+//build the html with esential data
   function call_me_back(api_link){
     employees = api_link.results;
     for(var i=0; i < employees.length; i++){
-      alpha.innerHTML += `<div ${key} class="user">
+      alpha.innerHTML += `<div data-tag=${key} class="user">
                         <img class="poza" src=${employees[i].picture.large} alt="poza"/>
                         <div class="detalii">
                         <h3 class="name">${employees[i].name.first}   ${employees[i].name.last}</h3>
@@ -34,11 +38,61 @@ $(document).ready(function(){
       </div>
       </div>` ;
       key++ //counter for modal
-      console.log(key); //testing the counter that it outputs 12 numbers
+
     }
-    console.log(user_html);
-  }
+    let person = document.querySelectorAll('.user');
+    let single_person = document.querySelector('.user');
+    var modal = document.querySelector('.modal');
+    var modal_off = document.querySelector('.close');
+    var content = document.querySelector('.modal-content');
+    //need to add event listener to close the modal
+
+    //finish of the closing of the modal
+    //need to add event listener on user and see if scope of employees[i] exists in event handler
+    for(var x = 0; x<person.length; x++){
+      person[x].addEventListener('click', function(e){
+
+        modal.style.display = "block";
+        // for(var i = 0; i < employees.length; i++){
+        //    let human = {
+        //     number : employees
+        //   }
+        // }
+        var place = this.dataset.tag;
+        if(e.target.dataset.tag === this.dataset.tag){ //if user click matches user data tag
+
+          content.innerHTML = "<span class='close'>&times;</span>" +
+          "<img src=" + employees[place].picture.large + ">" +
+          "<h3> Name : " + employees[place].name.first + "  " + employees[place].name.last + "</h3>" +
+          "<h3> User Name : " + employees[place].login.username + "</h3>" +
+          "<h3> Email : " + employees[place].email + "</h3>" +
+          "<h3> Telephone : " + employees[place].cell + "</h3>" +
+          "<h3> Address : " + employees[place].location.street + " , " + employees[place].location.city + " , " + employees[place].location.state + employees[place].location.postcode + "</h3>" +
+          "<h3> Birthdate : " + employees[place].dob + "</h3>";
+
+          // content.innerHTML += "<img src=" + employees[place].picture.large + ">";
+          // content.innerHTML += "<h3> Name : " + employees[place].name.first + "  " + employees[place].name.last + "</h3>";
+          // content.innerHTML += "<h3> User Name : " + employees[place].login.username + "</h3>";
+          // content.innerHTML += "<h3> Email : " + employees[place].email + "</h3>";
+          // content.innerHTML += "<h3> Telephone : " + employees[place].cell + "</h3>";
+          // content.innerHTML += "<h3> Address : " + employees[place].location.street + " , " + employees[place].location.city + " , " + employees[place].location.state + employees[place].location.postcode + "</h3>";
+          // content.innerHTML += "<h3> Birthdate : " + employees[place].dob + "</h3>";
+        }
+        //+ employees[place].picture.large
+
+      });
+      modal.addEventListener('click', function(e){
+        if(e.target){
+          modal.style.display = "none";
+        }
+      });
+    }
+    //trying to make a call back to get all user details and stor it
+
+
+    //++++++++++++++++++++++++++++++
+    //im experimenting with shit
+    }
 
   $.getJSON(api_link, call_me_back);
-  //console.log(employees);
 });
