@@ -23,8 +23,10 @@ let key = 0;
 //step 5 use that key to create a event if target clicked matches the user number display
 //the rest of the information about that user in a modal
 $(document).ready(function(){
-
-
+  function capital_letter(word){
+    word = word.slice(0, 1).toUpperCase() + word.slice(1, 100);
+    return word;
+  }
 //build the html with esential data
   function call_me_back(api_link){
     employees = api_link.results;
@@ -32,9 +34,9 @@ $(document).ready(function(){
       alpha.innerHTML += `<div data-tag=${key} class="user">
                         <img class="poza" src=${employees[i].picture.large} alt="poza"/>
                         <div class="detalii">
-                        <h3 class="name">${employees[i].name.first}   ${employees[i].name.last}</h3>
+                        <h3 class="name">${capital_letter(employees[i].name.first)}   ${capital_letter(employees[i].name.last)}</h3>
                         <p class= 'email'>${employees[i].email}</p>
-                        <p class= 'city'>${employees[i].location.city}</p>
+                        <p class= 'city'>${capital_letter(employees[i].location.city)}</p>
       </div>
       </div>` ;
       key++ //counter for modal
@@ -61,22 +63,25 @@ $(document).ready(function(){
         var place = this.dataset.tag;
         if(e.target.dataset.tag === this.dataset.tag){ //if user click matches user data tag
 
+          // content.innerHTML = "<span class='close'>&times;</span>" +
+          // "<img src=" + employees[place].picture.large + ">" +
+          // "<h3>" + capital_letter(employees[place].name.first) + "  " + capital_letter(employees[place].name.last) + "</h3>" +
+          // "<h3> User Name : " + employees[place].login.username + "</h3>" +
+          // "<h3> Email : " + employees[place].email + "</h3>" +
+          // "<h3> Telephone : " + employees[place].cell + "</h3>" +
+          // "<h3> Address : " + employees[place].location.street + " , " + employees[place].location.city + " , " +   + employees[place].location.postcode + "</h3>" +
+          // "<h3> Birthdate : " + employees[place].dob + "</h3>";
+
+
+          // rearanged
           content.innerHTML = "<span class='close'>&times;</span>" +
           "<img src=" + employees[place].picture.large + ">" +
-          "<h3> Name : " + employees[place].name.first + "  " + employees[place].name.last + "</h3>" +
-          "<h3> User Name : " + employees[place].login.username + "</h3>" +
-          "<h3> Email : " + employees[place].email + "</h3>" +
-          "<h3> Telephone : " + employees[place].cell + "</h3>" +
-          "<h3> Address : " + employees[place].location.street + " , " + employees[place].location.city + " , " + employees[place].location.state + employees[place].location.postcode + "</h3>" +
-          "<h3> Birthdate : " + employees[place].dob + "</h3>";
-
-          // content.innerHTML += "<img src=" + employees[place].picture.large + ">";
-          // content.innerHTML += "<h3> Name : " + employees[place].name.first + "  " + employees[place].name.last + "</h3>";
-          // content.innerHTML += "<h3> User Name : " + employees[place].login.username + "</h3>";
-          // content.innerHTML += "<h3> Email : " + employees[place].email + "</h3>";
-          // content.innerHTML += "<h3> Telephone : " + employees[place].cell + "</h3>";
-          // content.innerHTML += "<h3> Address : " + employees[place].location.street + " , " + employees[place].location.city + " , " + employees[place].location.state + employees[place].location.postcode + "</h3>";
-          // content.innerHTML += "<h3> Birthdate : " + employees[place].dob + "</h3>";
+          "<h3>" + capital_letter(employees[place].name.first) + "  " + capital_letter(employees[place].name.last) + "</h3>" +
+          "<h4> " + employees[place].email + "</h4>" +
+          "<h4> " + capital_letter(employees[place].location.city) + "</h4>" +
+          "<h4> " + employees[place].cell + "</h4>" +
+          "<h4> " + employees[place].location.street + " , " + capital_letter(employees[place].location.state) + " " + employees[place].location.postcode + "</h4>" +
+          "<h4> Birthday : " +  employees[place].dob + "</h4>";
         }
         //+ employees[place].picture.large
 
