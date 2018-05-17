@@ -2,7 +2,6 @@
 let api_link = 'https://randomuser.me/api/?results=12';
 let employees;
 const alpha = document.querySelector('body');
-//let fin = document.querySelector('.modal');
 let test = document.querySelector('body');
 let user_html = '';
 let key = 0;
@@ -47,32 +46,11 @@ $(document).ready(function(){
     var modal = document.querySelector('.modal');
     var modal_off = document.querySelector('.close');
     var content = document.querySelector('.modal-content');
-    //need to add event listener to close the modal
-
-    //finish of the closing of the modal
-    //need to add event listener on user and see if scope of employees[i] exists in event handler
     for(var x = 0; x<person.length; x++){
       person[x].addEventListener('click', function(e){
 
         modal.style.display = "block";
-        // for(var i = 0; i < employees.length; i++){
-        //    let human = {
-        //     number : employees
-        //   }
-        // }
         var place = this.dataset.tag;
-        //if(e.target.dataset.tag === this.dataset.tag){ //if user click matches user data tag
-
-          // content.innerHTML = "<span class='close'>&times;</span>" +
-          // "<img src=" + employees[place].picture.large + ">" +
-          // "<h3>" + capital_letter(employees[place].name.first) + "  " + capital_letter(employees[place].name.last) + "</h3>" +
-          // "<h3> User Name : " + employees[place].login.username + "</h3>" +
-          // "<h3> Email : " + employees[place].email + "</h3>" +
-          // "<h3> Telephone : " + employees[place].cell + "</h3>" +
-          // "<h3> Address : " + employees[place].location.street + " , " + employees[place].location.city + " , " +   + employees[place].location.postcode + "</h3>" +
-          // "<h3> Birthdate : " + employees[place].dob + "</h3>";
-
-
           // rearanged
           content.innerHTML = "<span class='close'>&times;</span>" +
           "<img src=" + employees[place].picture.large + ">" +
@@ -82,8 +60,6 @@ $(document).ready(function(){
           "<h4> " + employees[place].cell + "</h4>" +
           "<h4> " + employees[place].location.street + " , " + capital_letter(employees[place].location.state) + " " + employees[place].location.postcode + "</h4>" +
           "<h4> Birthday : " +  employees[place].dob + "</h4>";
-        //}
-        //+ employees[place].picture.large
 
       });
       modal.addEventListener('click', function(e){
@@ -92,11 +68,6 @@ $(document).ready(function(){
         }
       });
     }
-    //trying to make a call back to get all user details and stor it
-
-
-    //++++++++++++++++++++++++++++++
-    //im experimenting with shit
     }
 
   $.getJSON(api_link, call_me_back);
